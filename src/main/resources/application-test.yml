@@ -1,0 +1,14 @@
+server:
+  port: 9092
+
+app:
+  info: this is test
+  author: koty test
+  email: 123789@qq.com
+  swaggerTitle: 这是我的第一个swagger在线文档
+  swaggerContactName: Koty
+  swaggerContactWebUrl: https://www.baidu.com
+  swaggerContactEmail: 123456@qq.com
+  swaggerVersion: v1.2.0
+  swaggerDescription: springboot 在线文档
+  swaggerTermsOfServiceUrl: https://www.baidu.com

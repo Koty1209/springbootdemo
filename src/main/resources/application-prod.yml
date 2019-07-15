@@ -1,0 +1,7 @@
+server:
+  port: 9091
+
+app:
+  info: this is prod
+  author: ty
+  email: 456123@qq.com

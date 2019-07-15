@@ -1,0 +1,7 @@
+server:
+  port: 9093
+
+app:
+  info: this is dev
+  author: koty
+  email: 456789@qq.com
