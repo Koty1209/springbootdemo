@@ -28,6 +28,7 @@ public class ScheduleDb implements SchedulingConfigurer {
         public String getCronById(String id);
     }
 
+
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
 
