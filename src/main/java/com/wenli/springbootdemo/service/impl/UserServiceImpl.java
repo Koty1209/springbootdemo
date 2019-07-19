@@ -101,4 +101,22 @@ public class UserServiceImpl implements UserService {
 
         return userDao.updateUser(user) == 1;
     }
+
+    @Override
+    public User login(User user) {
+//        PageParam<User> userPageParam = new PageParam<User>();
+//        userPageParam.getModel().setUsername(username);
+//        userPageParam.getModel().setPassword(password);
+//        List<User> userList = (List<User>)getAllUser(userPageParam);
+//        User user = null;
+//        for (int i = 0; i < userList.size(); i++) {
+//            if (userList.get(i) != null) {
+//                user = userList.get(i);
+//            }
+//        }
+
+        return userDao.login(user);
+    }
+
+
 }

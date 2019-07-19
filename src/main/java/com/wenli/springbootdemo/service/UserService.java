@@ -3,10 +3,7 @@ package com.wenli.springbootdemo.service;
 import com.wenli.springbootdemo.common.PageParam;
 import com.wenli.springbootdemo.model.User;
 
-import java.util.List;
-
 public interface UserService {
-
 
     Object getAllUser(PageParam<User> pageParam);
 
@@ -18,5 +15,6 @@ public interface UserService {
 
     boolean updateUser(User user);
 
+    User login(User user);
 
 }

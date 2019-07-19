@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -45,11 +46,15 @@ public class UserController {
         return MyResponse.error();
     }
 
+//    @Transactional
     @PostMapping("/addUser")
     public Object addUser(@RequestBody User user){
 //        UserData.users.add(user);
 
-        return MyResponse.success(userService.addUser(user));
+        Object object = userService.addUser(user);
+//        System.out.println(1 / 0);
+
+        return MyResponse.success(object);
     }
 
     /**

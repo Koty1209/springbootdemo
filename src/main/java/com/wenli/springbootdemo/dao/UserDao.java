@@ -23,4 +23,7 @@ public interface UserDao {
 
     int updateUser(User user);
 
+    User login(String username, String password);
+
+    User login(User user);
 }
