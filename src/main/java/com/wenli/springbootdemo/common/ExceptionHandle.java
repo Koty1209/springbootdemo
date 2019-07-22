@@ -1,5 +1,7 @@
 package com.wenli.springbootdemo.common;
 
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,7 +20,7 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Object handleException(Exception e){ //
-//        e.printStackTrace();
+        e.printStackTrace();
         if (e instanceof MyException) { // 如果该异常在自定义异常内（code:200,500）
             return MyResponse.wrapper((MyException) e);
         }else if (e instanceof ArithmeticException){ // 算术异常
@@ -36,6 +38,12 @@ public class ExceptionHandle {
             HttpMessageNotReadableException exception = (HttpMessageNotReadableException)e;
             // 将HttpMessage不可读异常的信息给到响应中去
             return MyResponse.error().msg("json数据格式可能发生错误，请检查：" + exception.getMessage());
+        }else if(e instanceof UnauthorizedException){
+
+            return MyResponse.error().msg("未授权");
+        }else if(e instanceof AuthenticationException){
+
+            return MyResponse.error().msg("身份认证失败");
         }
 
         // 如果不在上述情况内，修改msg

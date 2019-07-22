@@ -23,6 +23,22 @@
             <if test=" roleId !=null and roleId !='' ">
                 and roleId=#{roleId}
             </if>
+
+            <if test=" email !=null and email !='' ">
+                and email=#{email}
+            </if>
+
+            <if test=" isActive !=null and isActive !='' ">
+                and isActive=#{isActive}
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                and deliveryAddress=#{deliveryAddress}
+            </if>
+
+            <if test=" headImg !=null and headImg !='' ">
+                and headImg=#{headImg}
+            </if>
         </where>
     </select>
 
@@ -49,6 +65,22 @@
             <if test=" roleId !=null and roleId !='' ">
                 roleId,
             </if>
+
+            <if test=" email !=null and email !='' ">
+                email,
+            </if>
+
+            <if test=" isActive !=null and isActive !='' ">
+                isActive,
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress,
+            </if>
+
+            <if test=" headImg !=null and headImg !='' ">
+                headImg,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
 
@@ -62,6 +94,22 @@
 
             <if test=" roleId !=null and roleId !='' ">
                 #{roleId},
+            </if>
+
+            <if test=" email !=null and email !='' ">
+                #{email},
+            </if>
+
+            <if test=" isActive !=null and isActive !='' ">
+                #{isActive},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                #{deliveryAddress},
+            </if>
+
+            <if test=" headImg !=null and headImg !='' ">
+                #{headImg},
             </if>
         </trim>
 
@@ -92,6 +140,21 @@
                 roleId=#{roleId},
             </if>
 
+            <if test=" email !=null and email !='' ">
+                email=#{email},
+            </if>
+
+            <if test=" isActive !=null and isActive !='' ">
+                isActive=#{isActive},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress=#{deliveryAddress},
+            </if>
+
+            <if test=" headImg !=null and headImg !='' ">
+                headImg=#{headImg},
+            </if>
         </trim>
         where id=#{id}
 

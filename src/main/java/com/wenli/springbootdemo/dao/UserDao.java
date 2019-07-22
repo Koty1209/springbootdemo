@@ -23,7 +23,14 @@ public interface UserDao {
 
     int updateUser(User user);
 
-    User login(String username, String password);
+//    User login(String username, String password);
 
     User login(User user);
+
+    @Select("select * from user where username=#{username}")
+    User getUserByUsername(String username);
+
+    @Select("select * from user where email=#{email}")
+    User getUserByEmail(String email);
+
 }

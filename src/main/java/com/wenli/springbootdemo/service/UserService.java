@@ -17,4 +17,9 @@ public interface UserService {
 
     User login(User user);
 
+    User register(User user);
+
+    User getUserByUsername(String username);
+
+    User getUserByEmail(String email);
 }

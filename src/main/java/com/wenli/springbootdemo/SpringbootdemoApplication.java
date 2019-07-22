@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @MapperScan({"com.wenli.springbootdemo.dao","com.wenli.springbootdemo.common.task"})
 public class SpringbootdemoApplication {
 
+    // eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjM1OTQ1MTYsInVzZXJuYW1lIjoiUm9zcyJ9.u44kvwKmHKtR6eFskBwHlM8O7kuDijNaIfB9drlj0jQ
     @Autowired
     private Environment environment;
 

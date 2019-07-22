@@ -12,6 +12,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @program: springbootdemo
  * @description:
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
  **/
 @Api(value = "user模块接口", description = "这是一个用户模块的接口")
 @RestController
+@RequestMapping("user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -27,11 +31,13 @@ public class UserController {
 
     @ApiOperation("查询所有用户")
     @PutMapping(value = "/getAllUser") // 这个查询需要带参数，GET请求无法实现（没有请求头）
+//    @RequiresRoles("admin")
+//    @RequiresPermissions("general")
     public Object getAllUser(@RequestBody PageParam<User> pageParam){
         return MyResponse.success(userService.getAllUser(pageParam));
     }
 
-    @RequestMapping(value = "/getUserById/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/getUserById/{id}")
     public Object getUserById(@PathVariable("id") int id){
         /*User user = new User();
         for (int i = 0; i < UserData.users.size(); i++) {
@@ -48,7 +54,7 @@ public class UserController {
 
 //    @Transactional
     @PostMapping("/addUser")
-    public Object addUser(@RequestBody User user){
+    public Object addUser(@RequestBody @Valid User user){
 //        UserData.users.add(user);
 
         Object object = userService.addUser(user);
@@ -56,6 +62,13 @@ public class UserController {
 
         return MyResponse.success(object);
     }
+//    @PostMapping("/addUser")
+//    public Object addUser(@RequestBody @Valid User user){
+//        User u=(User)userService.addUser(user);
+//
+//        return u!=null?MyRsp.success(u).
+//                msg("添加成功"):MyRsp.error().msg("添加失败");
+//    }
 
     /**
      * @PutMapping 中value的{}里带上参数名，通过@PathVariable来接收该参数值并取名给后面的形参
@@ -72,15 +85,11 @@ public class UserController {
     }
 
     @PutMapping("/updateUser")
-    public Object updateUser(@RequestBody User user){
+    public Object updateUser(@RequestBody  User user){
 
-
-        for (int i = 0; i < UserData.users.size(); i++) {
-            if (UserData.users.get(i).getUsername().equals(user.getUsername())) {
-                UserData.users.get(i).setPassword(user.getPassword());
-            }
-        }
-
+        user.setUsername(null); // 用户名无法修改
+        User u = userService.getUserById(user.getId()); // 根据用户参数拿到用户id
+        user.setIsActive(u.getIsActive()); // 前端不能传（修改）用户激活状态，保持激活状态为：根据id查到的用户的激活状态
 
         return MyResponse.success(userService.updateUser(user));
     }

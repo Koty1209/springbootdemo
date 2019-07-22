@@ -2,6 +2,8 @@ package com.wenli.springbootdemo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wenli.springbootdemo.common.HttpCode;
+import com.wenli.springbootdemo.common.MyException;
 import com.wenli.springbootdemo.common.PageParam;
 import com.wenli.springbootdemo.dao.UserDao;
 import com.wenli.springbootdemo.model.User;
@@ -12,6 +14,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -97,7 +100,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updateUser(User user) {
 
-//        log.info("走的是数据库");
+        if(StringUtils.isEmpty(user.getId())){
+            throw new MyException(HttpCode.ERROR).msg("通过id修改用户时，id不能为空");
+        }
 
         return userDao.updateUser(user) == 1;
     }
@@ -116,6 +121,26 @@ public class UserServiceImpl implements UserService {
 //        }
 
         return userDao.login(user);
+    }
+
+    @Override
+    public User register(User user) {
+
+        user.setIsActive(0);
+        user.setRoleId("general");
+        userDao.addUser(user);
+
+        return userDao.getUserById(user.getId());
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
     }
 
 
