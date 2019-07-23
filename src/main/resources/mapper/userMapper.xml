@@ -32,8 +32,8 @@
                 and isActive=#{isActive}
             </if>
 
-            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
-                and deliveryAddress=#{deliveryAddress}
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                and shippingAddress=#{shippingAddress}
             </if>
 
             <if test=" headImg !=null and headImg !='' ">
@@ -74,8 +74,8 @@
                 isActive,
             </if>
 
-            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
-                deliveryAddress,
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                shippingAddress,
             </if>
 
             <if test=" headImg !=null and headImg !='' ">
@@ -104,8 +104,8 @@
                 #{isActive},
             </if>
 
-            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
-                #{deliveryAddress},
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                #{shippingAddress},
             </if>
 
             <if test=" headImg !=null and headImg !='' ">
@@ -148,8 +148,8 @@
                 isActive=#{isActive},
             </if>
 
-            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
-                deliveryAddress=#{deliveryAddress},
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                shippingAddress=#{shippingAddress},
             </if>
 
             <if test=" headImg !=null and headImg !='' ">

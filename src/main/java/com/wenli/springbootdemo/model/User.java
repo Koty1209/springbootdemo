@@ -40,8 +40,8 @@ public class User implements Serializable {// todo 调用getUserById 传id不继
     @ApiModelProperty(value = "是否被激活", name = "isActive")
     private int isActive;
 
-    @ApiModelProperty(value = "收获地址", name = "deliveryAddress")
-    private String deliveryAddress;
+    @ApiModelProperty(value = "收获地址", name = "shippingAddress")
+    private String shippingAddress;
 
     @ApiModelProperty(value = "用户头像", name = "headImg")
     private String headImg;
