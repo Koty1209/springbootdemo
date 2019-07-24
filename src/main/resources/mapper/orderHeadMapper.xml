@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wenli.springbootdemo.dao.OrderHeadDao">
+
+    <!-- 动态多条件查询 -->
+    <select id="getAllOrderHead" parameterType="OrderHead" resultType="OrderHead">
+        SELECT * FROM `orderhead`
+        <where>
+
+            <if test=" id !=null and id !='' ">
+                and id=#{id}
+            </if>
+
+            <if test=" totalProductNum !=null and totalProductNum !='' ">
+                and totalProductNum=#{totalProductNum}
+            </if>
+
+            <if test=" firstProductName !=null and firstProductName !='' ">
+                and firstProductName=#{firstProductName}
+            </if>
+
+            <if test=" firstProductImg !=null and firstProductImg !='' ">
+                and firstProductImg=#{firstProductImg}
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                and totalPrice=#{totalPrice}
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                and userId=#{userId}
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                and createTime=#{createTime}
+            </if>
+
+            <if test=" status !=null and status !='' ">
+                and status=#{status}
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                and discount=#{discount}
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                and killDiscount=#{killDiscount}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="getOrderHeadById" parameterType="int" resultType="OrderHead">
+        select * from `orderhead` where id=#{id}
+    </select>
+
+    <insert parameterType="OrderHead" id="addOrderHead">
+        insert into `orderhead`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                id,
+            </if>
+
+            <if test=" totalProductNum !=null and totalProductNum !='' ">
+                totalProductNum,
+            </if>
+
+            <if test=" firstProductName !=null and firstProductName !='' ">
+                firstProductName,
+            </if>
+
+            <if test=" firstProductImg !=null and firstProductImg !='' ">
+                firstProductImg,
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                totalPrice,
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                userId,
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                createTime,
+            </if>
+
+            <if test=" status !=null and status !='' ">
+                status,
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                discount,
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                killDiscount,
+            </if>
+
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                #{id},
+            </if>
+
+            <if test=" totalProductNum !=null and totalProductNum !='' ">
+                #{totalProductNum},
+            </if>
+
+            <if test=" firstProductName !=null and firstProductName !='' ">
+                #{firstProductName},
+            </if>
+
+            <if test=" firstProductImg !=null and firstProductImg !='' ">
+                #{firstProductImg},
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                #{totalPrice},
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                #{userId},
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                #{createTime},
+            </if>
+
+            <if test=" status !=null and status !='' ">
+                #{status},
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                #{discount},
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                #{killDiscount},
+            </if>
+
+        </trim>
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+
+    <update parameterType="OrderHead" id="updateOrderHead">
+        update orderhead set
+
+        <trim suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                id=#{id},
+            </if>
+
+            <if test=" totalProductNum !=null and totalProductNum !='' ">
+                totalProductNum=#{totalProductNum},
+            </if>
+
+            <if test=" firstProductName !=null and firstProductName !='' ">
+                firstProductName=#{firstProductName},
+            </if>
+
+            <if test=" firstProductImg !=null and firstProductImg !='' ">
+                firstProductImg=#{firstProductImg},
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                totalPrice=#{totalPrice},
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                userId=#{userId},
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                createTime=#{createTime},
+            </if>
+
+            <if test=" status !=null and status !='' ">
+                status=#{status},
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                discount=#{discount},
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                killDiscount=#{killDiscount},
+            </if>
+
+        </trim>
+        where id=#{id}
+
+    </update>
+
+    <delete id="deleteOrderHeadById" parameterType="int">
+
+        delete from orderhead where id=#{id}
+
+    </delete>
+
+
+</mapper>

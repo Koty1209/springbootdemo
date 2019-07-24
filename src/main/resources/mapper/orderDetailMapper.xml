@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wenli.springbootdemo.dao.OrderDetailDao">
+
+    <!-- 动态多条件查询 -->
+    <select id="getAllOrderDetail" parameterType="OrderDetail" resultType="OrderDetail">
+        SELECT * FROM `orderdetail`
+        <where>
+
+            <if test=" id !=null and id !='' ">
+                and id=#{id}
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                and productId=#{productId}
+            </if>
+
+            <if test=" orderHeadId !=null and orderHeadId !='' ">
+                and orderHeadId=#{orderHeadId}
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                and userId=#{userId}
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                and productName=#{productName}
+            </if>
+
+            <if test=" normalPrice !=null and normalPrice !='' ">
+                and normalPrice=#{normalPrice}
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                and discount=#{discount}
+            </if>
+
+            <if test=" isInDiscount !=null and isInDiscount !='' ">
+                and isInDiscount=#{isInDiscount}
+            </if>
+
+            <if test=" typeId !=null and typeId !='' ">
+                and typeId=#{typeId}
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                and createTime=#{createTime}
+            </if>
+
+            <if test=" isInKill !=null and isInKill !='' ">
+                and isInKill=#{isInKill}
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                and killDiscount=#{killDiscount}
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                and productImg=#{productImg}
+            </if>
+
+            <if test=" viewNum !=null and viewNum !='' ">
+                and viewNum=#{viewNum}
+            </if>
+
+            <if test=" deserveNum !=null and deserveNum !='' ">
+                and deserveNum=#{deserveNum}
+            </if>
+
+            <if test=" describe !=null and describe !='' ">
+                and `describe`=#{describe}
+            </if>
+
+            <if test=" orderCount !=null and orderCount !='' ">
+                and orderCount=#{orderCount}
+            </if>
+
+            <if test=" freight !=null and freight !='' ">
+                and `freight`=#{freight}
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                and deliveryAddress=#{deliveryAddress}
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                and productNum=#{productNum}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="getOrderDetailById" parameterType="int" resultType="OrderDetail">
+        select * from `orderdetail` where id=#{id}
+    </select>
+
+    <insert parameterType="OrderDetail" id="addOrderDetail">
+        insert into `orderdetail`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                id,
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                productId,
+            </if>
+
+            <if test=" orderHeadId !=null and orderHeadId !='' ">
+                orderHeadId,
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                userId,
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                productName,
+            </if>
+
+            <if test=" normalPrice !=null and normalPrice !='' ">
+                normalPrice,
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                discount,
+            </if>
+
+            <if test=" isInDiscount !=null and isInDiscount !='' ">
+                isInDiscount,
+            </if>
+
+            <if test=" typeId !=null and typeId !='' ">
+                typeId,
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                createTime,
+            </if>
+
+            <if test=" isInKill !=null and isInKill !='' ">
+                isInKill,
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                killDiscount,
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                productImg,
+            </if>
+
+            <if test=" viewNum !=null and viewNum !='' ">
+                viewNum,
+            </if>
+
+            <if test=" deserveNum !=null and deserveNum !='' ">
+                deserveNum,
+            </if>
+
+            <if test=" describe !=null and describe !='' ">
+                `describe`,
+            </if>
+
+            <if test=" orderCount !=null and orderCount !='' ">
+                orderCount,
+            </if>
+
+            <if test=" freight !=null and freight !='' ">
+                `freight`,
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress,
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                productNum,
+            </if>
+
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                #{id},
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                #{productId},
+            </if>
+
+            <if test=" orderHeadId !=null and orderHeadId !='' ">
+                #{orderHeadId},
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                #{userId},
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                #{productName},
+            </if>
+
+            <if test=" normalPrice !=null and normalPrice !='' ">
+                #{normalPrice},
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                #{discount},
+            </if>
+
+            <if test=" isInDiscount !=null and isInDiscount !='' ">
+                #{isInDiscount},
+            </if>
+
+            <if test=" typeId !=null and typeId !='' ">
+                #{typeId},
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                #{createTime},
+            </if>
+
+            <if test=" isInKill !=null and isInKill !='' ">
+                #{isInKill},
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                #{killDiscount},
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                #{productImg},
+            </if>
+
+            <if test=" viewNum !=null and viewNum !='' ">
+                #{viewNum},
+            </if>
+
+            <if test=" deserveNum !=null and deserveNum !='' ">
+                #{deserveNum},
+            </if>
+
+            <if test=" describe !=null and describe !='' ">
+                #{describe},
+            </if>
+
+            <if test=" orderCount !=null and orderCount !='' ">
+                #{orderCount},
+            </if>
+
+            <if test=" freight !=null and freight !='' ">
+                #{freight},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                #{deliveryAddress},
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                #{productNum},
+            </if>
+
+        </trim>
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+
+    <update parameterType="OrderDetail" id="updateOrderDetail">
+        update orderdetail set
+
+        <trim suffixOverrides=",">
+            <if test=" id !=null and id !='' ">
+                id=#{id},
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                productId=#{productId},
+            </if>
+
+            <if test=" orderHeadId !=null and orderHeadId !='' ">
+                orderHeadId=#{orderHeadId},
+            </if>
+
+            <if test=" userId !=null and userId !='' ">
+                userId=#{userId},
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                productName=#{productName},
+            </if>
+
+            <if test=" normalPrice !=null and normalPrice !='' ">
+                normalPrice=#{normalPrice},
+            </if>
+
+            <if test=" discount !=null and discount !='' ">
+                discount=#{discount},
+            </if>
+
+            <if test=" isInDiscount !=null and isInDiscount !='' ">
+                isInDiscount=#{isInDiscount},
+            </if>
+
+            <if test=" typeId !=null and typeId !='' ">
+                typeId=#{typeId},
+            </if>
+
+            <if test=" createTime !=null and createTime !='' ">
+                createTime=#{createTime},
+            </if>
+
+            <if test=" isInKill !=null and isInKill !='' ">
+                isInKill=#{isInKill},
+            </if>
+
+            <if test=" killDiscount !=null and killDiscount !='' ">
+                killDiscount=#{killDiscount},
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                productImg=#{productImg},
+            </if>
+
+            <if test=" viewNum !=null and viewNum !='' ">
+                viewNum=#{viewNum},
+            </if>
+
+            <if test=" deserveNum !=null and deserveNum !='' ">
+                deserveNum=#{deserveNum},
+            </if>
+
+            <if test=" describe !=null and describe !='' ">
+                `describe`=#{describe},
+            </if>
+
+            <if test=" orderCount !=null and orderCount !='' ">
+                orderCount=#{orderCount},
+            </if>
+
+            <if test=" freight !=null and freight !='' ">
+                `freight`=#{freight},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress=#{deliveryAddress},
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                productNum=#{productNum},
+            </if>
+
+        </trim>
+        where id=#{id}
+
+    </update>
+
+    <delete id="deleteOrderDetailById" parameterType="int">
+
+        delete from orderdetail where id=#{id}
+
+    </delete>
+
+
+</mapper>

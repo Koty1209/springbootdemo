@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wenli.springbootdemo.dao.ProductTypeDao">
+
+    <resultMap id="productTypeMap" type="ProductType">
+        <id property="id" column="id"/>
+        <result property="productTypeName" column="productTypeName"/>
+        <result property="viewNum" column="viewNum"/>
+        <result property="typeImg" column="typeImg"/>
+    </resultMap>
+
+    <!--    get all -->
+    <select id="getAllProductType" resultMap="productTypeMap">
+        select * from `productType`
+    </select>
+
+    <!--    select -->
+    <select id="getProductTypeById" parameterType="int" resultType="ProductType">
+        select * from `productType` where id=#{id}
+    </select>
+
+    <!--    add -->
+    <insert id="addProductType" parameterType="ProductType">
+        insert into `productType`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=0">id,</if>
+            <if test="productTypeName!=null">productTypeName,</if>
+            <if test="viewNum!=0">viewNum,</if>
+            <if test="typeImg!=null">typeImg,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=0">#{id},</if>
+            <if test="productTypeName!=null">#{productTypeName},</if>
+            <if test="viewNum!=0">#{viewNum},</if>
+            <if test="typeImg!=null">#{typeImg},</if>
+        </trim>
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+    <!--    update -->
+    <update id="updateProductType" parameterType="ProductType">
+        update `productType`
+        <set>
+            <trim suffixOverrides=",">
+                <if test="id!=0">id=#{id},</if>
+                <if test="productTypeName!=null">productTypeName=#{productTypeName},</if>
+                <if test="viewNum!=0">viewNum=#{viewNum},</if>
+                <if test="typeImg!=null">typeImg=#{typeImg},</if>
+            </trim>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--    delete -->
+    <delete id="deleteProductTypeById" parameterType="int">
+        delete from `productType` where id=#{id}
+    </delete>
+
+</mapper>
