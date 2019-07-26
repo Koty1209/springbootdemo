@@ -123,6 +123,7 @@ public class OrderHeadServiceImpl implements OrderHeadService {
         return orderHeadDao.updateOrderHead(orderHead) == 1;
     }
 
+
     /**
      * 当用户点击结算购物车时，后端拿到一个要执行支付操作的商品集合，然后生成一个订单头
      * @param shoppingCarList 要执行支付操作的商品集合
@@ -132,7 +133,7 @@ public class OrderHeadServiceImpl implements OrderHeadService {
     public OrderHead createOrderHead(List<ShoppingCar> shoppingCarList) {
 
         if (shoppingCarList.size()==0) {
-            throw new MyException(HttpCode.ERROR).msg("生成订单失败，原因：没有要支付商品");
+            throw new MyException(HttpCode.ERROR).msg("生成订单失败，原因：没有要支付的商品");
         }
 
         OrderHead orderHead = new OrderHead(); // 最后要生成的订单表头
@@ -232,7 +233,7 @@ public class OrderHeadServiceImpl implements OrderHeadService {
 
         }
 
-        if(successInsert != shoppingCarList.size()){
+        if(successInsert != shoppingCarList.size()){ // 插入成功的记录条数与要购买的商品数目不相同
             throw new MyException(HttpCode.ERROR).msg("订单详情数据录入不完整");
         }
 

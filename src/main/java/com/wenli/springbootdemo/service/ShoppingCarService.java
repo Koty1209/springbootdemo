@@ -1,7 +1,6 @@
 package com.wenli.springbootdemo.service;
 
 import com.wenli.springbootdemo.common.PageParam;
-import com.wenli.springbootdemo.model.Product;
 import com.wenli.springbootdemo.model.ShoppingCar;
 
 public interface ShoppingCarService {

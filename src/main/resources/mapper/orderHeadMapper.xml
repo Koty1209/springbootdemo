@@ -49,6 +49,10 @@
                 and killDiscount=#{killDiscount}
             </if>
 
+            <if test=" firstDeliveryAddress !=null and firstDeliveryAddress !='' ">
+                and firstDeliveryAddress=#{firstDeliveryAddress}
+            </if>
+
         </where>
     </select>
 
@@ -100,6 +104,10 @@
                 killDiscount,
             </if>
 
+            <if test=" firstDeliveryAddress !=null and firstDeliveryAddress !='' ">
+                firstDeliveryAddress,
+            </if>
+
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
 
@@ -141,6 +149,10 @@
 
             <if test=" killDiscount !=null and killDiscount !='' ">
                 #{killDiscount},
+            </if>
+
+            <if test=" firstDeliveryAddress !=null and firstDeliveryAddress !='' ">
+                #{firstDeliveryAddress},
             </if>
 
         </trim>
@@ -195,6 +207,10 @@
 
             <if test=" killDiscount !=null and killDiscount !='' ">
                 killDiscount=#{killDiscount},
+            </if>
+
+            <if test=" firstDeliveryAddress !=null and firstDeliveryAddress !='' ">
+                firstDeliveryAddress=#{firstDeliveryAddress},
             </if>
 
         </trim>

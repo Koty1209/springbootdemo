@@ -7,7 +7,7 @@ spring:
     mode: HTML5
     cache: false
   profiles:
-    active: test
+    active: prod
 
   redis:
     database: 0

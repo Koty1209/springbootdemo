@@ -41,11 +41,14 @@ public class OrderHead implements Serializable { // Serializable序列化，redi
 
     @ApiModelProperty(value = "订单状态", name = "status")
     private String status;
-
     @ApiModelProperty(value = "订单总折扣", name = "discount")
     private double discount;
 
     @ApiModelProperty(value = "订单总秒杀折扣", name = "killDiscount")
     private double killDiscount;
+
+    @ApiModelProperty(value = "订单第一件商品的发货地址", name = "firstDeliveryAddress")
+    private String firstDeliveryAddress;
+
 
 }
