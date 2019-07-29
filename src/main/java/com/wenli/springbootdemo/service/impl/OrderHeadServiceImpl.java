@@ -225,7 +225,11 @@ public class OrderHeadServiceImpl implements OrderHeadService {
         int successInsert = 0;
         for(ShoppingCar shoppingCar:shoppingCarList){
             orderDetail = new OrderDetail();
+            double paymentPrice;
             BeanUtils.copyProperties(shoppingCar,orderDetail); // 从shoppingCar拷贝到orderDetail
+            // 计算订单支付价格
+            paymentPrice = orderDetail.getNormalPrice() - (orderDetail.getIsInDiscount()==2?orderDetail.getDiscount():0) - (orderDetail.getIsInKill()==2?orderDetail.getKillDiscount():0);
+            orderDetail.setPaymentPrice(paymentPrice);
             orderDetail.setOrderHeadId(orderHead.getId()); // 添加表头id
             orderDetail.setId(0); // 将订单详情id设为空让数据库自增，mapper文件中int类型的0会被当做null处理
             // sql  add

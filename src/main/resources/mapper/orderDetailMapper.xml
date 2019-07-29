@@ -4,9 +4,16 @@
 
 <mapper namespace="com.wenli.springbootdemo.dao.OrderDetailDao">
 
+    <sql id="allOrderDetailParams">
+        id,productId,orderHeadId,userId,productName,normalPrice,
+        discount,isInDiscount,typeId,createTime,isInKill,
+        killDiscount,productImg,viewNum,deserveNum,`describe`,
+        orderCount,freight,deliveryAddress,productNum,paymentPrice
+    </sql>
+
     <!-- 动态多条件查询 -->
     <select id="getAllOrderDetail" parameterType="OrderDetail" resultType="OrderDetail">
-        SELECT * FROM `orderdetail`
+        SELECT <include refid="allOrderDetailParams"/> FROM `orderdetail`
         <where>
 
             <if test=" id !=null and id !='' ">
@@ -89,11 +96,15 @@
                 and productNum=#{productNum}
             </if>
 
+            <if test=" paymentPrice !=null and paymentPrice !='' ">
+                and paymentPrice=#{paymentPrice}
+            </if>
+
         </where>
     </select>
 
     <select id="getOrderDetailById" parameterType="int" resultType="OrderDetail">
-        select * from `orderdetail` where id=#{id}
+        select <include refid="allOrderDetailParams"/> from `orderdetail` where id=#{id}
     </select>
 
     <insert parameterType="OrderDetail" id="addOrderDetail">
@@ -180,6 +191,10 @@
                 productNum,
             </if>
 
+            <if test=" paymentPrice !=null and paymentPrice !='' ">
+                paymentPrice,
+            </if>
+
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
 
@@ -261,6 +276,10 @@
 
             <if test=" productNum !=null and productNum !='' ">
                 #{productNum},
+            </if>
+
+            <if test=" paymentPrice !=null and paymentPrice !='' ">
+                #{paymentPrice},
             </if>
 
         </trim>
@@ -354,6 +373,10 @@
 
             <if test=" productNum !=null and productNum !='' ">
                 productNum=#{productNum},
+            </if>
+
+            <if test=" paymentPrice !=null and paymentPrice !='' ">
+                paymentPrice=#{paymentPrice},
             </if>
 
         </trim>

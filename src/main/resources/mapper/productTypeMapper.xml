@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wenli.springbootdemo.dao.ProductTypeDao">
 
+    <sql id="allProductTypeParams">
+        id,productTypeName,viewNum,typeImg,createTime,`describe`
+    </sql>
+
     <resultMap id="productTypeMap" type="ProductType">
         <id property="id" column="id"/>
         <result property="productTypeName" column="productTypeName"/>
@@ -11,17 +15,17 @@
 
     <!--    get all -->
     <select id="getAllProductType" resultMap="productTypeMap">
-        select * from `productType`
+        select <include refid="allProductTypeParams"/> from `producttype`
     </select>
 
     <!--    select -->
     <select id="getProductTypeById" parameterType="int" resultType="ProductType">
-        select * from `productType` where id=#{id}
+        select <include refid="allProductTypeParams"/> from `producttype` where id=#{id}
     </select>
 
     <!--    add -->
     <insert id="addProductType" parameterType="ProductType">
-        insert into `productType`
+        insert into `producttype`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=0">id,</if>
             <if test="productTypeName!=null">productTypeName,</if>
@@ -44,7 +48,7 @@
 
     <!--    update -->
     <update id="updateProductType" parameterType="ProductType">
-        update `productType`
+        update `producttype`
         <set>
             <trim suffixOverrides=",">
                 <if test="id!=0">id=#{id},</if>
@@ -58,7 +62,7 @@
 
     <!--    delete -->
     <delete id="deleteProductTypeById" parameterType="int">
-        delete from `productType` where id=#{id}
+        delete from `producttype` where id=#{id}
     </delete>
 
 </mapper>

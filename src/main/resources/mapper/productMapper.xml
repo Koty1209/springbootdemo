@@ -4,9 +4,15 @@
 
 <mapper namespace="com.wenli.springbootdemo.dao.ProductDao">
 
+    <sql id="allProductParams">
+        id,productName,normalPrice,discount,isInDiscount,typeId,
+        createTime,isInKill,killDiscount,productImg,viewNum,
+        deserveNum,`describe`,orderCount,freight,deliveryAddress
+    </sql>
+
     <!-- 动态多条件查询 -->
     <select id="getAllProduct" parameterType="Product" resultType="Product">
-        SELECT * FROM `product`
+        SELECT <include refid="allProductParams"/> FROM `product`
         <where>
             <if test=" id !=null and id !='' ">
                 and id=#{id}
@@ -76,7 +82,7 @@
     </select>
 
     <select id="getProductById" parameterType="int" resultType="Product">
-        select * from `product` where id=#{id}
+        select <include refid="allProductParams"/> from `product` where id=#{id}
     </select>
 
     <insert parameterType="Product" id="addProduct">

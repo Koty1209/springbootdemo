@@ -4,9 +4,14 @@
 
 <mapper namespace="com.wenli.springbootdemo.dao.OrderHeadDao">
 
+    <sql id="allOrderHeadParams">
+        id,totalProductNum,firstProductName,firstProductImg,totalPrice,userId,
+        createTime,status,discount,killDiscount,firstDeliveryAddress
+    </sql>
+
     <!-- 动态多条件查询 -->
     <select id="getAllOrderHead" parameterType="OrderHead" resultType="OrderHead">
-        SELECT * FROM `orderhead`
+        SELECT <include refid="allOrderHeadParams"/> FROM `orderhead`
         <where>
 
             <if test=" id !=null and id !='' ">
@@ -57,7 +62,7 @@
     </select>
 
     <select id="getOrderHeadById" parameterType="int" resultType="OrderHead">
-        select * from `orderhead` where id=#{id}
+        select <include refid="allOrderHeadParams"/> from `orderhead` where id=#{id}
     </select>
 
     <insert parameterType="OrderHead" id="addOrderHead">

@@ -78,4 +78,7 @@ public class OrderDetail implements Serializable { // Serializable序列化，re
     @ApiModelProperty(value = "购买商品件数", name = "productNum")
     private int productNum;
 
+    @ApiModelProperty(value = "实际支付价格", name = "paymentPrice")
+    private double paymentPrice;
+
 }

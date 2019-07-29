@@ -4,9 +4,16 @@
 
 <mapper namespace="com.wenli.springbootdemo.dao.ShoppingCarDao">
 
+    <sql id="allShoppingCarParams">
+        id,productId,userId,productName,normalPrice,discount,
+        isInDiscount,typeId,createTime,isInKill,killDiscount,
+        productImg,viewNum,deserveNum,`describe`,orderCount,
+        freight,deliveryAddress,productNum
+    </sql>
+
     <!-- 动态多条件查询 -->
     <select id="getAllShoppingCar" parameterType="ShoppingCar" resultType="ShoppingCar">
-        SELECT * FROM `shoppingcar`
+        SELECT <include refid="allShoppingCarParams"/> FROM `shoppingcar`
         <where>
             <if test=" id !=null and id !='' ">
                 and id=#{id}
@@ -88,7 +95,7 @@
     </select>
 
     <select id="getShoppingCarById" parameterType="int" resultType="ShoppingCar">
-        select * from `shoppingcar` where id=#{id}
+        select <include refid="allShoppingCarParams"/> from `shoppingcar` where id=#{id}
     </select>
 
     <insert parameterType="ShoppingCar" id="addShoppingCar">

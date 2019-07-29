@@ -14,13 +14,13 @@ spring:
     database: 0
     host: localhost
     port: 6379
-    password: 19981209Ky
+    password: root
     timeout: 5000
 
 
   datasource:
     username: root
-    password: 19981209Ky
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springbootdemo?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
 
@@ -54,3 +54,6 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+app:
+  imgPath: G:/img/
