@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wenli.springbootdemo.dao.LogisticsDao">
+
+    <sql id="allLogisticsParams">
+        id,orderId,deliveryTime,productId,productName,productImg,
+        productNum,totalPrice,receiverId,receiverName,shippingAddress,
+        deliveryAddress,shippingTime,receiverEmail
+    </sql>
+
+    <!-- 动态多条件查询 -->
+    <select id="getAllLogistics" parameterType="Logistics" resultType="Logistics">
+        SELECT <include refid="allLogisticsParams"/> FROM `logistics`
+        <where>
+
+            <if test=" id !=null and id !='' ">
+                and id=#{id}
+            </if>
+
+            <if test=" orderId !=null and orderId !='' ">
+                and orderId=#{orderId}
+            </if>
+
+            <if test=" deliveryTime !=null and deliveryTime !='' ">
+                and deliveryTime=#{deliveryTime}
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                and productId=#{productId}
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                and productName=#{productName}
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                and productImg=#{productImg}
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                and productNum=#{productNum}
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                and totalPrice=#{totalPrice}
+            </if>
+
+            <if test=" receiverId !=null and receiverId !='' ">
+                and receiverId=#{receiverId}
+            </if>
+
+            <if test=" receiverName !=null and receiverName !='' ">
+                and receiverName=#{receiverName}
+            </if>
+
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                and shippingAddress=#{shippingAddress}
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                and deliveryAddress=#{deliveryAddress}
+            </if>
+
+            <if test=" shippingTime !=null and shippingTime !='' ">
+                and shippingTime=#{shippingTime}
+            </if>
+
+            <if test=" receiverEmail !=null and receiverEmail !='' ">
+                and receiverEmail=#{receiverEmail}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="getLogisticsById" parameterType="int" resultType="Logistics">
+        select <include refid="allLogisticsParams"/> from `logistics` where id=#{id}
+    </select>
+
+    <insert parameterType="Logistics" id="addLogistics">
+        insert into `logistics`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                id,
+            </if>
+
+            <if test=" orderId !=null and orderId !='' ">
+                orderId,
+            </if>
+
+            <if test=" deliveryTime !=null and deliveryTime !='' ">
+                deliveryTime,
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                productId,
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                productName,
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                productImg,
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                productNum,
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                totalPrice,
+            </if>
+
+            <if test=" receiverId !=null and receiverId !='' ">
+                receiverId,
+            </if>
+
+            <if test=" receiverName !=null and receiverName !='' ">
+                receiverName,
+            </if>
+
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                shippingAddress,
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress,
+            </if>
+
+            <if test=" shippingTime !=null and shippingTime !='' ">
+                shippingTime,
+            </if>
+
+            <if test=" receiverEmail !=null and receiverEmail !='' ">
+                receiverEmail,
+            </if>
+
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                #{id},
+            </if>
+
+            <if test=" orderId !=null and orderId !='' ">
+                #{orderId},
+            </if>
+
+            <if test=" deliveryTime !=null and deliveryTime !='' ">
+                #{deliveryTime},
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                #{productId},
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                #{productName},
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                #{productImg},
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                #{productNum},
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                #{totalPrice},
+            </if>
+
+            <if test=" receiverId !=null and receiverId !='' ">
+                #{receiverId},
+            </if>
+
+            <if test=" receiverName !=null and receiverName !='' ">
+                #{receiverName},
+            </if>
+
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                #{shippingAddress},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                #{deliveryAddress},
+            </if>
+
+            <if test=" shippingTime !=null and shippingTime !='' ">
+                #{shippingTime},
+            </if>
+
+            <if test=" receiverEmail !=null and receiverEmail !='' ">
+                #{receiverEmail},
+            </if>
+
+        </trim>
+
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+
+    </insert>
+
+
+    <update parameterType="Logistics" id="updateLogistics">
+        update logistics set
+
+        <trim suffixOverrides=",">
+
+            <if test=" id !=null and id !='' ">
+                id=#{id},
+            </if>
+
+            <if test=" orderId !=null and orderId !='' ">
+                orderId=#{orderId},
+            </if>
+
+            <if test=" deliveryTime !=null and deliveryTime !='' ">
+                deliveryTime=#{deliveryTime},
+            </if>
+
+            <if test=" productId !=null and productId !='' ">
+                productId=#{productId},
+            </if>
+
+            <if test=" productName !=null and productName !='' ">
+                productName=#{productName},
+            </if>
+
+            <if test=" productImg !=null and productImg !='' ">
+                productImg=#{productImg},
+            </if>
+
+            <if test=" productNum !=null and productNum !='' ">
+                productNum=#{productNum},
+            </if>
+
+            <if test=" totalPrice !=null and totalPrice !='' ">
+                totalPrice=#{totalPrice},
+            </if>
+
+            <if test=" receiverId !=null and receiverId !='' ">
+                receiverId=#{receiverId},
+            </if>
+
+            <if test=" receiverName !=null and receiverName !='' ">
+                receiverName=#{receiverName},
+            </if>
+
+            <if test=" shippingAddress !=null and shippingAddress !='' ">
+                shippingAddress=#{shippingAddress},
+            </if>
+
+            <if test=" deliveryAddress !=null and deliveryAddress !='' ">
+                deliveryAddress=#{deliveryAddress},
+            </if>
+
+            <if test=" shippingTime !=null and shippingTime !='' ">
+                shippingTime=#{shippingTime},
+            </if>
+
+            <if test=" receiverEmail !=null and receiverEmail !='' ">
+                receiverEmail=#{receiverEmail},
+            </if>
+
+        </trim>
+        where id=#{id}
+
+    </update>
+
+    <delete id="deleteLogisticsById" parameterType="int">
+
+        delete from logistics where id=#{id}
+
+    </delete>
+
+
+</mapper>

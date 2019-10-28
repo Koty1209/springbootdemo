@@ -13,7 +13,7 @@ public class EmailUtil {
     //  pljndhlocfumbede
 
 
-    public static MimeMessage createSimpleMail(Session session,String mima,String emailAddresss)
+    public static MimeMessage createSimpleMail(Session session,String authCode,String emailAddresss)
             throws Exception {
 // 创建邮件对象
         MimeMessage message = new MimeMessage(session);
@@ -24,7 +24,7 @@ public class EmailUtil {
 // 邮件的标题
         message.setSubject("找回密码");
 // 邮件的文本内容
-        message.setContent("你的新密码是："+mima, "text/html;charset=UTF-8");
+        message.setContent("【vpshop】尊敬的用户：您的校验码：" + authCode + "，工作人员不会索取，请勿泄漏。", "text/html;charset=UTF-8");
 // 返回创建好的邮件对象
         return message;
     }

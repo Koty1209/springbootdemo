@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *自定义异常捕捉类，并自定义一些处理
+ * 自定义异常捕捉类，并自定义一些处理
  * 适用于：前后端分离作业时，前端遇到错误时看不懂后端异常，自定义一套异常给前端人员调试
  */
 @ControllerAdvice // 异常处理

@@ -24,6 +24,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -234,7 +235,6 @@ public class OrderHeadServiceImpl implements OrderHeadService {
             orderDetail.setId(0); // 将订单详情id设为空让数据库自增，mapper文件中int类型的0会被当做null处理
             // sql  add
             successInsert += (orderDetailService.addOrderDetail(orderDetail)!=null?1:0);
-
         }
 
         if(successInsert != shoppingCarList.size()){ // 插入成功的记录条数与要购买的商品数目不相同

@@ -22,12 +22,12 @@ public class EmailController {
         User u = userService.getUserByEmail(email);
         if (u != null){
             if (u.getIsActive() == 1){
-                String pw = (new Random().nextInt(899999) + 100000) + "mm";
-                u.setPassword(pw);
-                userService.updateUser(u);
+                String authCode = (new Random().nextInt(899999) + 100000) + "";
+//                u.setPassword(authCode);
+//                userService.updateUser(u);
 
-                EmailUtil.sendEmail(pw, email);
-                return MyResponse.success(null).msg("邮件发送成功，请注意查收");
+                EmailUtil.sendEmail(authCode, email);
+                return MyResponse.success(authCode).msg("验证码发送成功，请注意查收");
             }else {
                 return MyResponse.error().msg("该账号未激活");
             }
