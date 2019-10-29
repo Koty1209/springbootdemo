@@ -13,7 +13,7 @@ public interface UserService {
 
     boolean deleteUserById(int id);
 
-    boolean updateUser(User user);
+    User updateUser(User user);
 
     User login(User user);
 

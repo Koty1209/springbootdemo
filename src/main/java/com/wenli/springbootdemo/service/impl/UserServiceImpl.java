@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -31,7 +32,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
-    @Cacheable(key = "#p0", value = "users")
+    @Autowired
+    RedisTemplate redisTemplate;
+
+    @CachePut(key = "#p0", value = "users")
     @Override
     public Object getAllUser(PageParam<User> pageParam) {
 
@@ -66,7 +70,7 @@ public class UserServiceImpl implements UserService {
      * @Cacheable(key = "#p0", value = "users")
      * 当缓存中没有想要的值（key）时，才调用下面的方法,
      * #p（取参数）0（下面方法中的第1个）及id  赋值给key
-     * value 的值为下面方法返回值   todo(是不是对的)
+     * value 的值为下面方法返回值
      */
     @Cacheable(key = "#p0", value = "users")
     @Override
@@ -97,14 +101,22 @@ public class UserServiceImpl implements UserService {
         return userDao.deleteUserById(id) == 1;
     }
 
+    @CachePut(key = "#p0.id", value = "users")
     @Override
-    public boolean updateUser(User user) {
+    public User updateUser(User user) {
 
         if(StringUtils.isEmpty(user.getId())){
             throw new MyException(HttpCode.ERROR).msg("通过id修改用户时，id不能为空");
         }
-
-        return userDao.updateUser(user) == 1;
+        userDao.updateUser(user);
+//        if (userDao.updateUser(user) > 0) {
+//            String key = user.getId() + "";
+//            if (redisTemplate.hasKey(key)) { // 如果缓存中有key，删除该缓存
+//                redisTemplate.delete(key);
+//            }
+//            return true;
+//        }
+        return userDao.getUserById(user.getId());
     }
 
     @Override
